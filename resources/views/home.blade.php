@@ -2,11 +2,6 @@
 
 @section('content')
     <h1>
-        Title
+        Homepage
     </h1>
-    @foreach($posts as $post)
-        <h2>{{  $post->title }}</h2>
-        <p>{{ $post->subtitle }}</p>
-        <div>{!! $post->description !!}</div>
-    @endforeach
 @endsection
