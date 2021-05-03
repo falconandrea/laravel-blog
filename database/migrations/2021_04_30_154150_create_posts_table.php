@@ -16,6 +16,8 @@ class CreatePostsTable extends Migration
             'posts',
             function (Blueprint $table) {
                 $table->id();
+                $table->foreignId('category_id');
+                $table->string('slug')->unique();
                 $table->string('title');
                 $table->text('subtitle');
                 $table->text('description');

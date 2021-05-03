@@ -13,4 +13,8 @@ class Post extends Model
         'subtitle',
         'description',
     ];
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }
