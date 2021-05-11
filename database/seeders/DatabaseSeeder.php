@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
                 'title'       => 'My first post',
                 'slug'        => 'my-first-post',
                 'subtitle'    => 'Lorem ipsum dolar sit amet.',
-                'description' => 'Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet.',
+                'description' => '<p>Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet.</p>',
             ]
         );
 
@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
                 'title'       => 'My work post',
                 'slug'        => 'my-work-post',
                 'subtitle'    => 'Lorem ipsum dolar sit amet.',
-                'description' => 'Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet.',
+                'description' => '<p>Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet. Lorem ipsum dolar sit amet.</p>',
             ]
         );
     }
