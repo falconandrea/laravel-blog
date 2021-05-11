@@ -18,7 +18,7 @@ use App\Models\Category;
 Route::get(
     '/',
     function () {
-        return view('posts', ['posts' => Post::all()]);
+        return view('posts', ['posts' => Post::with('category')->get()]);
     }
 );
 
