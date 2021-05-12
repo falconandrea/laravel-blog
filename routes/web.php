@@ -18,7 +18,7 @@ use App\Models\Category;
 Route::get(
     '/',
     function () {
-        return view('posts', ['posts' => Post::with('category')->with('user')->get()]);
+        return view('posts', ['posts' => Post::with('category', 'user')->get()]);
     }
 )->name('home');
 
