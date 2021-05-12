@@ -13,6 +13,11 @@ class Post extends Model
         'subtitle',
         'description',
     ];
+    // In every query load also category info and author info
+    protected $with = [
+        'category',
+        'author',
+    ];
 
     public function category() {
         return $this->belongsTo(Category::class);

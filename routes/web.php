@@ -19,7 +19,7 @@ use App\Models\User;
 Route::get(
     '/',
     function () {
-        return view('posts', ['posts' => Post::latest()->with('category', 'author')->get()]);
+        return view('posts', ['posts' => Post::latest()->get()]);
     }
 )->name('home');
 
@@ -33,13 +33,13 @@ Route::get(
 Route::get(
     '/categories/{category:slug}',
     function (Category $category) {
-        return view('posts', ['posts' => $category->posts->load(['category', 'author'])]);
+        return view('posts', ['posts' => $category->posts]);
     }
 )->name('categories-posts');
 
 Route::get(
     '/authors/{author:username}',
     function (User $author) {
-        return view('posts', ['posts' => $author->posts->load(['category', 'author'])]);
+        return view('posts', ['posts' => $author->posts]);
     }
 )->name('authors-posts');
