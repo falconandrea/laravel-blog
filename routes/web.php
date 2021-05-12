@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Models\Category;
 Route::get(
     '/',
     function () {
-        return view('posts', ['posts' => Post::with('category', 'user')->get()]);
+        return view('posts', ['posts' => Post::latest()->with('category', 'author')->get()]);
     }
 )->name('home');
 
@@ -32,6 +33,13 @@ Route::get(
 Route::get(
     '/categories/{category:slug}',
     function (Category $category) {
-        return view('posts', ['posts' => $category->posts]);
+        return view('posts', ['posts' => $category->posts->load(['category', 'author'])]);
     }
 )->name('categories-posts');
+
+Route::get(
+    '/authors/{author:username}',
+    function (User $author) {
+        return view('posts', ['posts' => $author->posts->load(['category', 'author'])]);
+    }
+)->name('authors-posts');
