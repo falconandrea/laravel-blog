@@ -19,6 +19,12 @@ class Post extends Model
         'author',
     ];
 
+    public function scopeFilter($query, array $filters) {
+        if (isset($filters['search']) && $filters['search'] !== '') {
+            $query->where('title', 'like', '%' . $filters['search'] . '%')->orWhere('subtitle', 'like', '%' . $filters['search'] . '%');
+        }
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
