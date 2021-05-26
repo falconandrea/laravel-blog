@@ -34,20 +34,6 @@ Route::get(
 )->name('post-detail');
 
 Route::get(
-    '/categories/{category:slug}',
-    function (Category $category) {
-        return view(
-            'posts',
-            [
-                'posts'           => $category->posts,
-                'currentCategory' => $category,
-                'categories'      => Category::all(),
-            ]
-        );
-    }
-)->name('categories-posts');
-
-Route::get(
     '/authors/{author:username}',
     function (User $author) {
         return view(

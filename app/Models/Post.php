@@ -23,6 +23,15 @@ class Post extends Model
         if (isset($filters['search']) && $filters['search'] !== '') {
             $query->where('title', 'like', '%' . $filters['search'] . '%')->orWhere('subtitle', 'like', '%' . $filters['search'] . '%');
         }
+
+        if (isset($filters['category']) && $filters['category'] !== '') {
+            $query->whereHas(
+                'category',
+                function ($query) use ($filters) {
+                    $query->where('slug', $filters['category']);
+                }
+            );
+        }
     }
 
     public function category() {
