@@ -37,7 +37,7 @@ Route::get(
     '/authors/{author:username}',
     function (User $author) {
         return view(
-            'posts',
+            'posts.index',
             [
                 'posts' => $author->posts,
             ]

@@ -32,6 +32,15 @@ class Post extends Model
                 }
             );
         }
+
+        if (isset($filters['author']) && $filters['author'] !== '') {
+            $query->whereHas(
+                'author',
+                function ($query) use ($filters) {
+                    $query->where('username', $filters['author']);
+                }
+            );
+        }
     }
 
     public function category() {
