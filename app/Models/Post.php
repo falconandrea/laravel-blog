@@ -21,7 +21,11 @@ class Post extends Model
 
     public function scopeFilter($query, array $filters) {
         if (isset($filters['search']) && $filters['search'] !== '') {
-            $query->where('title', 'like', '%' . $filters['search'] . '%')->orWhere('subtitle', 'like', '%' . $filters['search'] . '%');
+            $query->where(
+                function ($query) use ($filters) {
+                    $query->where('title', 'like', '%' . $filters['search'] . '%')->orWhere('subtitle', 'like', '%' . $filters['search'] . '%');
+                }
+            );
         }
 
         if (isset($filters['category']) && $filters['category'] !== '') {
