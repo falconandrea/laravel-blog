@@ -39,8 +39,7 @@ Route::get(
         return view(
             'posts',
             [
-                'posts'      => $author->posts,
-                'categories' => Category::all(),
+                'posts' => $author->posts,
             ]
         );
     }
