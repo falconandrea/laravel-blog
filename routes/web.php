@@ -22,3 +22,7 @@ Route::get(
 
 
 Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store']);
+Auth::routes();
+
+Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
