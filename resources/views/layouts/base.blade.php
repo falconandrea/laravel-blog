@@ -16,14 +16,14 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
+            <div class="mt-8 md:mt-0 flex items-center">
                 <a href="/" class="text-xs font-bold uppercase mr-6">Home Page</a>
                 @guest
-                <a href="/login" class="text-xs font-bold uppercase mr-6">Login</a>
-                <a href="/register" class="text-xs font-bold uppercase mr-6">Register</a>
+                    <a href="/login" class="text-xs font-bold uppercase mr-6">Login</a>
+                    <a href="/register" class="text-xs font-bold uppercase mr-6">Register</a>
                 @endguest
                 @auth
-                    <form method="POST" action="/logout">
+                    <form method="POST" action="/logout" class="flex items-center">
                         @csrf
                         <button type="submit" class="text-xs font-bold uppercase mr-6">Logout</button>
                     </form>
