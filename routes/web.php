@@ -26,3 +26,42 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post(
+    '/newsletter',
+    function () {
+        request()->validate(
+            ['email' => 'required|email']
+        );
+
+        $mailchimp = new \MailchimpMarketing\ApiClient();
+
+        try {
+            $mailchimp->setConfig(
+                [
+                    'apiKey' => config('services.mailchimp.key'),
+                    'server' => config('services.mailchimp.server'),
+                ]
+            );
+        } catch (\Exception $e) {
+            throw \Illuminate\Validation\ValidationException::withMessages(
+                ['email' => 'Error during Mailchimp connection']
+            );
+        }
+
+        try {
+            $response = $mailchimp->lists->addListMember(
+                'asdad',
+                [
+                    'email_address' => request('email'),
+                    'status'        => 'subscribed',
+                ]
+            );
+        } catch (\Exception $e) {
+            throw \Illuminate\Validation\ValidationException::withMessages(
+                ['email' => 'Error during subscribe this email']
+            );
+        }
+
+        return redirect('/');
+    }
+);
